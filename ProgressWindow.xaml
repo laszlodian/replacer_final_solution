@@ -1,0 +1,14 @@
+﻿<Window x:Name="ProgressWindow1" x:Class="replacer.ProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:replacer"
+        mc:Ignorable="d"
+        Title="ProgressWindow" Height="220.909" Width="800" WindowStartupLocation="CenterScreen" UseLayoutRounding="True" Topmost="True">
+    <Grid>
+        <ProgressBar x:Name="pbProgressWindow" HorizontalAlignment="Center" Height="25" Margin="10,0,10,90" Width="772" IsIndeterminate="True" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lbWorking" Content="Program is working on..." HorizontalAlignment="Left" Margin="104,34,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,5 @@
+DefaultPathToLookForDocuments = V:\testNetworkLibrary\overall\kmp1500
+DefaultPathToLookForInformationFiles = V:\testNetworkLibrary
+TestEnvironmentFileName200 = TestEnvironment200.txt
+TestEnvironmentFileName1500 = TestEnvironment1500.txt
+TestObjectFileName = TestObject.txt

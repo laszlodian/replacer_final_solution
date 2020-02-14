@@ -1,0 +1,24 @@
+﻿<Window x:Name="MainWindow1" x:Class="replacer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:replacer"
+        mc:Ignorable="d" WindowState="Normal"
+        Title="TestResult Helper Application: replacer" Height="211.556" Width="779.545" UseLayoutRounding="True">
+
+    <Grid Margin="10,0,0,0">
+        <StackPanel Margin="0,0,0,252">
+            <!-- <Button x:Name="btSetDefaults" Content="Set Default Values" HorizontalAlignment="Left" Height="50"  VerticalAlignment="Top" Width="250" FontSize="14" FontWeight="Bold" Click="BtSetDefaults_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" /> -->
+            <Label x:Name="lbMessage" Content="Please wait..." HorizontalAlignment="Center" Height="27" Margin="10,0,0,0" Width="776" FontWeight="Bold" FontSize="18" FontFamily="Arial Black" HorizontalContentAlignment="Center" Foreground="Red" Visibility="Hidden"/>
+        </StackPanel>
+
+        <Button x:Name="btReplaceDefault" Content="Start Replacement" HorizontalAlignment="Right" Height="50"  VerticalAlignment="Top" Width="250" FontSize="14" FontWeight="Bold" Click="BtReplaceDefault_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,55,304,0"/>
+        <Button x:Name="btSetDefaults_Copy" Content="Configuration" HorizontalAlignment="Left" Height="50"  VerticalAlignment="Top" Width="250" FontSize="14" FontWeight="Bold" Click="BtSetDefaults_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="85,0,0,0" />
+        <Button x:Name="btReplaceDefault_Copy" Content="Special Settings" HorizontalAlignment="Right" Height="50"  VerticalAlignment="Top" Width="250" FontSize="14" FontWeight="Bold" Click="BtReplaceDefault_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,172,0"/>
+        <StackPanel HorizontalAlignment="Left" Height="59" Margin="0,122,0,0" VerticalAlignment="Top" Width="762">
+            <ProgressBar x:Name="pbProcess" Height="22" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Bottom" VerticalAlignment="Bottom"/>
+            <Label x:Name="lbInfo" Content="Choose task to execute" Height="32" Margin="98,0,124,0" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial Black" FontWeight="Bold"/>
+        </StackPanel>
+    </Grid>
+</Window>

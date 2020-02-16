@@ -47,3 +47,26 @@ c:\new_replacers\v01\replacer\obj\Debug\replacer.Properties.Resources.resources
 c:\new_replacers\v01\replacer\obj\Debug\replacer.csproj.GenerateResource.cache
 c:\new_replacers\v01\replacer\obj\Debug\replacer.exe
 c:\new_replacers\v01\replacer\obj\Debug\replacer.pdb
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\replacer.csproj.ResolveComReference.cache
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\App.g.cs
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\replacer_MarkupCompile.cache
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\replacer_MarkupCompile.lref
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\replacer.exe
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\replacer.pdb
+C:\Replacer projekt\Workspace\replacer_final_solution-master\bin\Debug\replacer.exe.config
+C:\Replacer projekt\Workspace\replacer_final_solution-master\bin\Debug\replacer.exe
+C:\Replacer projekt\Workspace\replacer_final_solution-master\bin\Debug\replacer.pdb
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\replacer.g.resources
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\replacer.Properties.Resources.resources
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\replacer.csproj.GenerateResource.cache
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\View\ConfigurationWindow.g.cs
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\View\HelpWindow.g.cs
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\View\ProgressWindow.g.cs
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\View\SpecialSettingsWindow.g.cs
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\View\ConfigurationWindow.baml
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\View\HelpWindow.baml
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\View\ProgressWindow.baml
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\View\SpecialSettingsWindow.baml
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\MainWindow.g.cs
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\MainWindow.baml

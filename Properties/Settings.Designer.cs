@@ -12,7 +12,7 @@ namespace replacer.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.3.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -56,6 +56,66 @@ namespace replacer.Properties {
             }
             set {
                 this["RobotTypeSeparatorChar"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int IndexOfObjectWordCell_Row {
+            get {
+                return ((int)(this["IndexOfObjectWordCell_Row"]));
+            }
+            set {
+                this["IndexOfObjectWordCell_Row"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int IndexOfObjectWordCell_Column {
+            get {
+                return ((int)(this["IndexOfObjectWordCell_Column"]));
+            }
+            set {
+                this["IndexOfObjectWordCell_Column"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int IndexOfEnvironmentCell_Row {
+            get {
+                return ((int)(this["IndexOfEnvironmentCell_Row"]));
+            }
+            set {
+                this["IndexOfEnvironmentCell_Row"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int IndexOfEnvironmentCell_Column {
+            get {
+                return ((int)(this["IndexOfEnvironmentCell_Column"]));
+            }
+            set {
+                this["IndexOfEnvironmentCell_Column"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("replaced")]
+        public string FixedDocumentSubfolderName {
+            get {
+                return ((string)(this["FixedDocumentSubfolderName"]));
+            }
+            set {
+                this["FixedDocumentSubfolderName"] = value;
             }
         }
     }

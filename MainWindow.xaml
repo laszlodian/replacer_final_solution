@@ -15,7 +15,7 @@
 
         <Button x:Name="btReplaceDefault" Content="Start Replacement" HorizontalAlignment="Right" Height="50"  VerticalAlignment="Top" Width="250" FontSize="14" FontWeight="Bold" Click="BtReplaceDefault_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,55,304,0"/>
         <Button x:Name="btSetDefaults_Copy" Content="Configuration" HorizontalAlignment="Left" Height="50"  VerticalAlignment="Top" Width="250" FontSize="14" FontWeight="Bold" Click="BtSetDefaults_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="85,0,0,0" />
-        <Button x:Name="btReplaceDefault_Copy" Content="Special Settings" HorizontalAlignment="Right" Height="50"  VerticalAlignment="Top" Width="250" FontSize="14" FontWeight="Bold" Click="BtReplaceDefault_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,172,0"/>
+        <Button x:Name="btReplaceDefault_Copy" Content="Special Settings" HorizontalAlignment="Right" Height="50"  VerticalAlignment="Top" Width="250" FontSize="14" FontWeight="Bold" Click="BtShowSpecialSettings_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,172,0"/>
         <StackPanel HorizontalAlignment="Left" Height="59" Margin="0,122,0,0" VerticalAlignment="Top" Width="762">
             <ProgressBar x:Name="pbProcess" Height="22" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Bottom" VerticalAlignment="Bottom"/>
             <Label x:Name="lbInfo" Content="Choose task to execute" Height="32" Margin="98,0,124,0" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Arial Black" FontWeight="Bold"/>

@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("replacerwpf.sln")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("kuka.ico")]
 
 

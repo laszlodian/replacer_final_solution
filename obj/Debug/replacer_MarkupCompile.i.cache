@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-c:\new_replacers\v01\replacer\obj\Debug\
+C:\Replacer projekt\Workspace\replacer_final_solution-master\obj\Debug\
 replacer
 none
 false
 DEBUG;TRACE
-c:\new_replacers\v01\replacer\App.xaml
-5445725562
-1-1551421421
-17-576538306
+C:\Replacer projekt\Workspace\replacer_final_solution-master\App.xaml
+5-473364413
+
+19-681094077
 18-1822888588
-ConfigurationWindow.xaml;MainWindow.xaml;ProgressWindow.xaml;SetDefaultsWindow.xaml;Window1.xaml;
+View\ConfigurationWindow.xaml;View\HelpWindow.xaml;MainWindow.xaml;View\ProgressWindow.xaml;View\SpecialSettingsWindow.xaml;
 
 True
 

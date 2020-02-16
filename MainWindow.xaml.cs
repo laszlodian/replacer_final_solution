@@ -1,4 +1,9 @@
-﻿using System;
+﻿using replacer.Controller;
+using replacer.Helpers;
+using replacer.Model;
+using replacer.View;
+using replacer.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -19,20 +24,21 @@ namespace replacer
     {
         #region Variables
         public static MainWindow Instance = null;
-        private OpenFileDialog OpenFileDlg = new OpenFileDialog()
-        {
-            Filter = "MS Word documents (*.doc;*.docx)|*.doc;*.docx",
-            Multiselect = true,
-            CheckFileExists = true
-        };
+        public ConfigurationWindow configWindow = null;
+        public ProgressWindow pw = null;
         public Thread progressThread;
-        private FolderBrowserDialog SetDirectoryDlg = new FolderBrowserDialog();
         #endregion
 
         #region Properties
 
+        private bool showProgressOnProgressBar;
 
-        private string swVersion="3.0";
+        public bool ShowProgressOnProgressBar
+        {
+            get { return showProgressOnProgressBar; }
+            set { showProgressOnProgressBar = value; }
+        }
+        private string swVersion = "3.0";
 
         public string SwVersion
         {
@@ -65,7 +71,7 @@ namespace replacer
             }
         }
 
-        private Dictionary<string, int> specialTestEnvironmentFiles=new Dictionary<string, int>();
+        private Dictionary<string, int> specialTestEnvironmentFiles = new Dictionary<string, int>();
         public Dictionary<string, int> SpecialTestEnvironmentFiles
         {
             get { return specialTestEnvironmentFiles; }
@@ -77,11 +83,11 @@ namespace replacer
         public string EnvironmentTextFileName200 { get; private set; }
         public string EnvironmentTextFileName1500 { get; private set; }
 
-        public Dictionary<KeyValuePair<string, string>, int> testEnvironmentFiles=new Dictionary<KeyValuePair<string, string>, int>();
-        
-        private Dictionary<string,string> settingsDict;
+        public Dictionary<KeyValuePair<string, string>, int> testEnvironmentFiles = new Dictionary<KeyValuePair<string, string>, int>();
 
-        public Dictionary<string,string> SettingsDict
+        private Dictionary<string, string> settingsDict;
+
+        public Dictionary<string, string> SettingsDict
         {
             get { return settingsDict; }
             set { settingsDict = value; }
@@ -98,13 +104,13 @@ namespace replacer
                 testEnvironmentFiles = value;
             }
         }
-               
+
         #endregion
 
-        public MainWindow()     
+        public MainWindow()
         {
-            InitializeComponent();         
-           
+            InitializeComponent();
+
             if (Instance == null)
             {
                 Instance = this;
@@ -112,6 +118,7 @@ namespace replacer
             else
                 throw new Exception("This class is singleton DO NOT create more!");
 
+            DocumentModel dmModell = new DocumentModel();
 
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -120,7 +127,7 @@ namespace replacer
             this.Loaded += MainWindow_Loaded;
 
             Trace.TraceInformation("MainWindow constructor");
-          
+
             this.Closed += MainWindow_Closed;
         }
 
@@ -142,34 +149,23 @@ namespace replacer
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             TraceHelper.SetupListener();
-            SwVersion versionControll= new SwVersion();           
+            SwVersion versionControll = new SwVersion();
             this.Title = string.Format("{0}     Version: {1}", Title, versionControll.ActualSWVersion);
             Trace.TraceInformation("{0}     Version: {1}", Title, versionControll.ActualSWVersion);
-        
+
         }
-        private static void KillAllWordProcess()
-        {
-            Trace.TraceInformation("Kill all proccess with string containing WINWORD");
-            foreach (Process item in Process.GetProcesses())
-            {
-                if (item.ProcessName.Contains("WINWORD"))
-                {
-                    item.Kill();
-                }
-            }
-        }
+       
         private void MainWindow_Closed(object sender, EventArgs e)
         {
             this.WindowState = WindowState.Minimized;
             Environment.Exit(Environment.ExitCode);
         }
-        public ConfigurationWindow configWindow = null;
         private void BtReplaceDefault_Click(object sender, RoutedEventArgs e)
         {
             Trace.TraceInformation("Replace Process Started");
-            StartProgressBarOnOtherThread(true);          
+            StartProgressBarOnOtherThread(true);
             Trace.TraceInformation("Progress thread created");
-          configWindow=  new ConfigurationWindow(false);
+            configWindow = new ConfigurationWindow(false);
             GetValuesFromConfigurationWindow();
 
             if (String.IsNullOrEmpty(documentsPath))
@@ -184,33 +180,24 @@ namespace replacer
 
             if (String.IsNullOrEmpty(documentsPath) || String.IsNullOrEmpty(textFilesPath))
                 throw new Exception("TextFiles Path and Path of documents has not benn set successfull!");
-            
+
             new MainProcess(documentsPath, textFilesPath);
 
-            Trace.TraceInformation("MainProcess ended");          
+            Trace.TraceInformation("MainProcess ended");
             StartProgressBarOnOtherThread(false);
-            SetText(string.Format("Replacement at {0} folder has been completed.",documentsPath));
-            KillAllWordProcess();
-          
+            DocumentModel.Instance.SetText(string.Format("Replacement at {0} folder has been completed.", documentsPath));
+            DocumentModel.Instance.KillAllWordProcess();
+            CleanUp();
             progressThread.Abort();
         }
 
-        delegate void SetTextDelegate(string text);
-        public void SetText(string text)
-        {
-            if (MainWindow.Instance.lbInfo.Dispatcher.CheckAccess())
-            {
-                MainWindow.Instance.lbInfo.Content = text;
-            }
-            else
-                MainWindow.Instance.lbInfo.Dispatcher.BeginInvoke(new SetTextDelegate(SetText), text);
-        }
+      
         public void CleanUp()
         {
+            DocumentModel.Instance = null;
+            DocumentModel.Instance =new DocumentModel();
             testEnvironmentFiles = new Dictionary<KeyValuePair<string, string>, int>();
-
             specialTestEnvironmentFiles = new Dictionary<string, int>();
-
             TestEnvironmentFiles = new Dictionary<KeyValuePair<string, string>, int>();
         }
 
@@ -226,7 +213,7 @@ namespace replacer
                 {
                     TextFilesPath = item.SettingValue;
                 }
-                else if (item.SettingName.ToLower().Contains("object") )
+                else if (item.SettingName.ToLower().Contains("object"))
                 {
                     ObjectTextFileName = item.SettingValue;
                 }
@@ -238,9 +225,9 @@ namespace replacer
                     Trace.TraceInformation("The settings name ending with number: {0}", result);
                     endNumber = Convert.ToString(result);
                     testEnvironmentFiles.Add(new KeyValuePair<string, string>(item.SettingName, item.SettingValue), Int32.Parse(endNumber));
-                }               
+                }
             }
-            TestEnvironmentFiles= testEnvironmentFiles;           
+            TestEnvironmentFiles = testEnvironmentFiles;
         }
 
         private void ReadOutEnvironmentFileNames(Dictionary<KeyValuePair<string, string>, int> testEnvironmentFiles)
@@ -256,7 +243,7 @@ namespace replacer
                         break;
                     case 1500:
                         EnvironmentTextFileName1500 = setting.Value;
-                        Trace.TraceInformation("Environment file for 1500 is found: {0}",setting.Value);
+                        Trace.TraceInformation("Environment file for 1500 is found: {0}", setting.Value);
                         break;
                     default:
                         Trace.TraceWarning("Environment file number not expected, creating property for it: " +
@@ -266,52 +253,79 @@ namespace replacer
                 }
             }
         }
-     
+
+
        
-        private void GetValuesFromSQLManager()
-        {
-            //DocumentsPath = SQLManager.DefaultPathToDocuments;
-            //TextFilesPath = SQLManager.DefaultPathToFiles;
-            //ObjectTextFileName = SQLManager.TestObjectFile;
-            //EnvironmentTextFileName200 = SQLManager.TestEnvironmentFile200;
-            //EnvironmentTextFileName1500 = SQLManager.TestEnvironmentFile1500;
-            //Trace.TraceInformation("Values get from SQLManager");
-        }
 
         private void StartProgressBarOnOtherThread(bool showProgress)
         {
             ShowProgressOnProgressBar = showProgress;
-            pbProcess.Visibility = Visibility.Visible;
             progressThread = new Thread(new ThreadStart(ShowProgress));
             progressThread.SetApartmentState(ApartmentState.STA);
             progressThread.Start();
         }
-        private bool showProgressOnProgressBar;
-
-        public bool ShowProgressOnProgressBar
-        {
-            get { return showProgressOnProgressBar; }
-            set { showProgressOnProgressBar = value; }
-        }
-
+     
+       
         delegate void ShowProgressDelegate();
         private void ShowProgress()
         {
-            if (MainWindow.Instance.pbProcess.CheckAccess())
-            {
-                MainWindow.Instance.pbProcess.IsIndeterminate = ShowProgressOnProgressBar;
-            }else
-                MainWindow.Instance.pbProcess.Dispatcher.BeginInvoke(new ShowProgressDelegate(ShowProgress));
+            new ProgressWindow().ShowDialog();
+            //pw = new ProgressWindow();
+            //HideMainWindowThreadSafe(false);
+            //pw.ShowDialog();
+            
+            ////HideProcessWindowThreadSafe(true);
+            //this.WindowState = WindowState.Normal;
+        //     HideMainWindowThreadSafe(true);
 
-            //Start progress bar
         }
+        delegate void HideMainWindowThreadSafeDelegate(bool show);
+        public void HideMainWindowThreadSafe(bool show)
+        {
+            if (this.CheckAccess())
+            {             
+                    if (show)
+                      this.Hide();
+                    else
+                        this.Show();
+               
+            }else
+                this.Dispatcher.BeginInvoke(new HideMainWindowThreadSafeDelegate(HideMainWindowThreadSafe),show);
+        }
+        delegate void HideProcessWindowThreadSafeDelegate(bool show);
+        public void HideProcessWindowThreadSafe(bool show)
+        {
+            if (ProgressWindow.Instance.CheckAccess())
+            {
+                if (show)
+                    ProgressWindow.Instance.ShowDialog();
+                else
+                    ProgressWindow.Instance.Hide();
+
+            }
+            else
+                this.Dispatcher.BeginInvoke(new HideProcessWindowThreadSafeDelegate(HideProcessWindowThreadSafe), show);
+        }
+
         private void BtSetDefaults_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             this.WindowState = WindowState.Minimized;
             new ConfigurationWindow(true);
             this.WindowState = WindowState.Normal;
         }
 
+        private void BtShowSpecialSettings_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+            this.Hide();
+            SpecialSettingsWindow specialSettingsWindow = new SpecialSettingsWindow();
+            specialSettingsWindow.Activate();
+            specialSettingsWindow.BringIntoView();
+            specialSettingsWindow.ShowDialog();
+            
+            this.Show();
+            this.WindowState = WindowState.Normal;
+        }
     }
 
 

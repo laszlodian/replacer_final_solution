@@ -11,5 +11,20 @@
     <Setting Name="RobotTypeSeparatorChar" Type="System.Char" Scope="User">
       <Value Profile="(Default)">,</Value>
     </Setting>
+    <Setting Name="IndexOfObjectWordCell_Row" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="IndexOfObjectWordCell_Column" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="IndexOfEnvironmentCell_Row" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="IndexOfEnvironmentCell_Column" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="FixedDocumentSubfolderName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">replaced</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
